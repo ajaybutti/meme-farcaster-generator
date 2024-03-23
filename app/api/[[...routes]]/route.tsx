@@ -7,7 +7,6 @@ import { NextRequest } from 'next/server';
 
 const app = new Frog({
   basePath: '/api',
-  hub:pinata()
 })
 
 
@@ -28,10 +27,10 @@ app.use("/*", async (c:any, next:any) => {
 
 
 
-app.frame('/', (c:any) => {
+app.frame('/', (c) => {
   return c.res({
     action: '/picker',
-    image: `${process.env.NEXT_PUBLIC_SITE_URL}/blue.jpg`,
+    image: `$https://meme-farcaster-generator.vercel.app/blue.jpg`,
     imageAspectRatio:"1:1",
     intents: [<Button value="A">A</Button>, <Button value="B">B</Button>],
   })
@@ -44,7 +43,7 @@ app.frame('/picker', (c:any) => {
     if (buttonValue === 'A') {
       return c.res({
         action: '/meme/a',
-        image: `${process.env.NEXT_PUBLIC_SITE_URL}/meme/a`,
+        image: 'https://meme-farcaster-generator.vercel.app/meme/a',
         intents: [
           <TextInput placeholder="Text" />,
           <Button value="generate">Generate Meme </Button>,
@@ -54,7 +53,7 @@ app.frame('/picker', (c:any) => {
 
     return c.res({
       action: '/meme/b',
-      image: `${process.env.NEXT_PUBLIC_SITE_URL}/meme/b`,
+      image: 'https://meme-farcaster-generator.vercel.app/meme/b',
       imageAspectRatio: '1:1',
       intents: [
         <TextInput placeholder="Text" />,
@@ -87,14 +86,14 @@ app.frame('/meme/:id', (c:any) => {
     if (id === 'a') {
       return c.res({
         action: '/',
-        image: `${process.env.NEXT_PUBLIC_SITE_URL}/meme/a?${newSearchParams}`,
+        image: `https://meme-farcaster-generator.vercel.app/meme/a?${newSearchParams}`,
         intents: [<Button>Start Over 🔄</Button>],
       })
     }
 
     return c.res({
       action: '/',
-      image: `${process.env.NEXT_PUBLIC_SITE_URL}/meme/b?${newSearchParams}`,
+      image: `https://meme-farcaster-generator.vercel.app/meme/b?${newSearchParams}`,
       imageAspectRatio: '1:1',
       intents: [<Button>Start Over 🔄</Button>],
     })
