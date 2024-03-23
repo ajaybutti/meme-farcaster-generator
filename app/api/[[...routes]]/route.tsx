@@ -7,10 +7,11 @@ import { NextRequest } from 'next/server';
 
 const app = new Frog({
   basePath: '/api',
+  hub:pinata()
 })
 
 
-app.use("/*",async (c, next) => {
+app.use("/*", async (c:any, next:any) => {
   await next()
     const isFrame = c.res.headers.get('content-type')?.includes('html');
     if (isFrame) {
@@ -27,7 +28,7 @@ app.use("/*",async (c, next) => {
 
 
 
-app.frame('/', (c) => {
+app.frame('/', (c:any) => {
   return c.res({
     action: '/picker',
     image: `${process.env.NEXT_PUBLIC_SITE_URL}/blue.jpg`,
@@ -38,7 +39,7 @@ app.frame('/', (c) => {
 })
 
 
-app.frame('/picker', (c) => {
+app.frame('/picker', (c:any) => {
   const { buttonValue} = c
     if (buttonValue === 'A') {
       return c.res({
@@ -73,7 +74,7 @@ app.frame('/picker', (c) => {
   })
 })
 
-app.frame('/meme/:id', (c) => {
+app.frame('/meme/:id', (c:any) => {
   const id = c.req.param('id')
 
   const { frameData } = c
