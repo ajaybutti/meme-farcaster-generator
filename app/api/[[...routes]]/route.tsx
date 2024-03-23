@@ -30,7 +30,7 @@ app.use("/*", async (c:any, next:any) => {
 app.frame('/', (c) => {
   return c.res({
     action: '/picker',
-    image: `$https://meme-farcaster-generator.vercel.app/blue.jpg`,
+    image: `https://meme-farcaster-generator.vercel.app/blue.jpg`,
     imageAspectRatio:"1:1",
     intents: [<Button value="A">A</Button>, <Button value="B">B</Button>],
   })
